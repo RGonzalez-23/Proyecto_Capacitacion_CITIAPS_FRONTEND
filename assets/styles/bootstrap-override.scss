@@ -1,0 +1,94 @@
+// Personalización de Bootstrap con colores blanco y verde
+
+// Colores personalizados
+$white: #ffffff;
+$green: #22c55e;
+$dark-green: #16a34a;
+$light-green: #dcfce7;
+
+// Sobrescribir variables de Bootstrap
+$primary: $green;
+$secondary: $dark-green;
+$success: $green;
+$light: $light-green;
+$body-bg: $white;
+$body-color: #1f2937;
+
+// Actualizar bordes y sombras con verdes
+$border-color: #e5e7eb;
+
+// Importar Bootstrap después de personalizar las variables
+@import '~/node_modules/bootstrap/scss/bootstrap';
+
+// Importar Bootstrap Icons CSS
+@import '~/node_modules/bootstrap-icons/font/bootstrap-icons.css';
+
+// Estilos personalizados adicionales
+body {
+  background-color: $white;
+  color: $body-color;
+}
+
+.btn-primary {
+  background-color: $green;
+  border-color: $green;
+
+  &:hover {
+    background-color: $dark-green;
+    border-color: $dark-green;
+  }
+
+  &:active {
+    background-color: darken($green, 10%);
+    border-color: darken($green, 10%);
+  }
+}
+
+.btn-secondary {
+  background-color: $dark-green;
+  border-color: $dark-green;
+
+  &:hover {
+    background-color: darken($dark-green, 10%);
+    border-color: darken($dark-green, 10%);
+  }
+}
+
+.navbar {
+  background-color: $green !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: 600;
+  color: $white !important;
+}
+
+.card {
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.badge-primary {
+  background-color: $green;
+}
+
+.alert-success {
+  background-color: $light-green;
+  border-color: #86efac;
+  color: $dark-green;
+}
+
+.form-control:focus {
+  border-color: $green;
+  box-shadow: 0 0 0 0.2rem rgba(34, 197, 94, 0.25);
+}
+
+.form-check-input:checked {
+  background-color: $green;
+  border-color: $green;
+}

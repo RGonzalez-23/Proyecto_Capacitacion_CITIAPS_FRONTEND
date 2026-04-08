@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  css: ['~/assets/styles/bootstrap-override.scss'],
   runtimeConfig: {
     public: {
       // Cambiar usando variable de entorno en tiempo de ejecución si se necesita
