@@ -33,7 +33,7 @@
 
         <!-- Tasks List -->
         <div v-else class="row g-3">
-          <div v-for="task in completedTasks" :key="task.id" class="col-12">
+          <div v-for="task in paginatedTasks" :key="task.id" class="col-12">
             <div class="card card-task card-completed border-0 shadow">
               <div class="card-body">
                 <div class="row align-items-start">
@@ -82,6 +82,34 @@
               </div>
             </div>
           </div>
+
+          <!-- Pagination -->
+          <div v-if="totalPages > 1" class="col-12 mt-4">
+            <nav aria-label="Paginación">
+              <ul class="pagination justify-content-center">
+                <li class="page-item" :class="{ disabled: currentPage === 1 }">
+                  <button @click="prevPage" class="page-link" :disabled="currentPage === 1">
+                    <i class="bi bi-chevron-left"></i> Anterior
+                  </button>
+                </li>
+                <li
+                  v-for="page in totalPages"
+                  :key="page"
+                  class="page-item"
+                  :class="{ active: currentPage === page }"
+                >
+                  <button @click="goToPage(page)" class="page-link">
+                    {{ page }}
+                  </button>
+                </li>
+                <li class="page-item" :class="{ disabled: currentPage === totalPages }">
+                  <button @click="nextPage" class="page-link" :disabled="currentPage === totalPages">
+                    Siguiente <i class="bi bi-chevron-right"></i>
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
       </div>
     </div>
@@ -89,19 +117,29 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 
 definePageMeta({
   layout: 'default'
 })
 
 const { tasks, isLoading, error, fetchTasks, deleteTask } = useTasks()
+const currentPage = ref(1)
+const itemsPerPage = 5
 
 onMounted(async () => {
   await fetchTasks()
 })
 
 const completedTasks = computed(() => tasks.value.filter(t => t.completed))
+
+const totalPages = computed(() => Math.ceil(completedTasks.value.length / itemsPerPage))
+
+const paginatedTasks = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage
+  const end = start + itemsPerPage
+  return completedTasks.value.slice(start, end)
+})
 
 function onDelete(task: any) {
   if (!confirm(`¿Estás seguro de que deseas eliminar "${task.title}"?`)) return
@@ -114,6 +152,25 @@ function formatDate(d: string) {
   } catch {
     return d
   }
+}
+
+function prevPage() {
+  if (currentPage.value > 1) {
+    currentPage.value--
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+}
+
+function nextPage() {
+  if (currentPage.value < totalPages.value) {
+    currentPage.value++
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+}
+
+function goToPage(page: number) {
+  currentPage.value = page
+  window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 </script>
 
@@ -193,5 +250,42 @@ h1 {
     text-align: left !important;
     margin-top: 1rem;
   }
+}
+
+.pagination {
+  margin: 0;
+}
+
+.pagination .page-link {
+  color: #22c55e;
+  border-color: #22c55e;
+  background-color: white;
+}
+
+.pagination .page-link:hover {
+  background-color: #f0fdf4;
+  color: #16a34a;
+  border-color: #16a34a;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #22c55e;
+  border-color: #22c55e;
+  color: white;
+}
+
+.pagination .page-item.disabled .page-link {
+  color: #d1d5db;
+  border-color: #e5e7eb;
+  background-color: #f9fafb;
+  cursor: not-allowed;
+}
+
+.page-link {
+  padding: 0.5rem 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  transition: all 0.2s ease;
 }
 </style>

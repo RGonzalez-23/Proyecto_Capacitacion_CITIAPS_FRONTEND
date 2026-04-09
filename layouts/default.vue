@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex min-vh-100 layout-container">
+  <div class="layout-container">
     <!-- Sidebar -->
     <nav class="sidebar bg-primary text-white p-4" :class="{ open: sidebarOpen }">
       <!-- Close button (mobile) - Header del sidebar en mobile -->
@@ -110,14 +110,15 @@ const completedCount = computed(() => tasks.value.filter(t => t.completed).lengt
 .layout-container {
   position: relative;
   overflow: hidden;
+  display: flex;
+  min-height: 100vh;
 }
 
 .sidebar {
   width: 280px;
   background-color: #22c55e !important;
   height: 100vh;
-  position: sticky;
-  top: 0;
+  position: relative;
   overflow-y: auto;
   transition: all 0.3s ease;
 }
@@ -266,8 +267,10 @@ main {
 /* Desktop - Sidebar siempre visible */
 @media (min-width: 769px) {
   .sidebar {
-    position: sticky;
+    position: relative;
     transform: translateX(0);
+    height: auto;
+    min-height: 100vh;
   }
 
   .btn-close-sidebar {
@@ -314,6 +317,14 @@ main {
 
   .flex-grow-1 {
     width: 100%;
+  }
+
+  .btn-close-sidebar-x {
+    display: flex !important;
+  }
+
+  .btn-menu-toggle {
+    display: flex !important;
   }
 }
 </style>
