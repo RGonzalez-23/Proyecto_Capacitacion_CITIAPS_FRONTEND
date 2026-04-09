@@ -4,7 +4,12 @@
     <div v-if="selectedTags.length > 0" class="mb-3">
       <label class="form-label">Etiquetas seleccionadas</label>
       <div class="selected-tags">
-        <span v-for="tagName in selectedTags" :key="tagName" class="badge bg-success me-2 mb-2">
+        <span 
+          v-for="tagName in selectedTags" 
+          :key="tagName" 
+          class="badge me-2 mb-2"
+          :style="{ backgroundColor: getTagColorByName(tagName) }"
+        >
           {{ tagName }}
           <button
             type="button"
@@ -44,9 +49,14 @@
         <small class="text-muted d-block mb-2">Tags disponibles:</small>
         <button
           v-for="suggestion in suggestions"
-          :key="suggestion.id"
+          :key="suggestion._id"
           type="button"
-          class="btn btn-sm btn-outline-success me-2 mb-2"
+          class="btn btn-sm me-2 mb-2"
+          :style="{ 
+            backgroundColor: suggestion.color || '#22c55e',
+            color: 'white',
+            border: 'none'
+          }"
           @click="selectSuggestion(suggestion)"
         >
           {{ suggestion.name }}
@@ -60,7 +70,7 @@
 import { ref, computed, onMounted } from 'vue'
 
 interface Tag {
-  id: string
+  _id: string
   name: string
   color?: string
 }
@@ -77,7 +87,7 @@ const emit = defineEmits<{
   'update:modelValue': [tags: string[]]
 }>()
 
-const { allTags, fetchAllTags } = useTasks()
+const { allTags, fetchAllTags, getTagColorByName } = useTasks()
 const selectedTags = ref<string[]>(props.modelValue)
 const searchInput = ref('')
 

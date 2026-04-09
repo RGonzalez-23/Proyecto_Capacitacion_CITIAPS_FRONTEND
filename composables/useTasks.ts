@@ -126,6 +126,11 @@ export function useTasks() {
     }
   }
 
+  function getTagColorByName(tagName: string): string {
+    const tag = allTags.value.find(t => t.name.toLowerCase() === tagName.toLowerCase())
+    return tag?.color || '#22c55e'
+  }
+
   return {
     tasks,
     allTags,
@@ -137,6 +142,7 @@ export function useTasks() {
     createTag,
     completeTask,
     deleteTask,
-    deleteTag
+    deleteTag,
+    getTagColorByName
   }
 }

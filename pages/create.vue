@@ -31,7 +31,12 @@
               <div class="flex-grow-1">
                 <h6 class="mb-1">{{ task.title }}</h6>
                 <small v-if="task.tagNames.length > 0" class="text-muted">
-                  <span v-for="tag in task.tagNames" :key="tag" class="badge bg-success me-1">
+                  <span 
+                    v-for="tag in task.tagNames" 
+                    :key="tag" 
+                    class="badge me-1"
+                    :style="{ backgroundColor: getTagColorByName(tag) }"
+                  >
                     {{ tag }}
                   </span>
                 </small>
@@ -52,7 +57,7 @@ definePageMeta({
   layout: 'default'
 })
 
-const { tasks, fetchTasks } = useTasks()
+const { tasks, fetchTasks, getTagColorByName } = useTasks()
 
 onMounted(async () => {
   await fetchTasks()

@@ -55,7 +55,7 @@
 
                         <!-- Tags -->
                         <div v-if="task.tagNames && task.tagNames.length > 0" class="mb-2">
-                          <span v-for="tagName in task.tagNames" :key="tagName" class="badge bg-success me-2">
+                          <span v-for="tagName in task.tagNames" :key="tagName" class="badge me-2" :style="{ backgroundColor: getTagColorByName(tagName) }">
                             <i class="bi bi-tag"></i> {{ tagName }}
                           </span>
                         </div>
@@ -124,7 +124,7 @@ definePageMeta({
   layout: 'default'
 })
 
-const { tasks, isLoading, error, fetchTasks, deleteTask } = useTasks()
+const { tasks, isLoading, error, fetchTasks, deleteTask, getTagColorByName } = useTasks()
 const currentPage = ref(1)
 const itemsPerPage = 5
 
@@ -231,9 +231,11 @@ h1 {
 }
 
 .badge {
-  background-color: #22c55e !important;
   font-size: 0.85rem;
   padding: 0.375rem 0.625rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .btn-danger {

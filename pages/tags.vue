@@ -115,7 +115,10 @@
         <!-- Tags Grid -->
         <div v-else class="row g-3">
           <div v-for="tag in allTags" :key="tag._id" class="col-md-6 col-lg-4">
-            <div class="card card-tag border-0 shadow h-100">
+            <div 
+              class="card card-tag border-0 shadow h-100"
+              :style="{ borderTopColor: tag.color || '#22c55e' }"
+            >
               <div class="card-body">
                 <!-- Tag Header -->
                 <div class="d-flex align-items-center justify-content-between mb-3">
@@ -123,9 +126,10 @@
                     <div
                       v-if="tag.color"
                       class="tag-color-dot"
-                      :style="{ backgroundColor: tag.color }"
+                      :style="{ backgroundColor: tag.color, borderColor: tag.color }"
                       :title="tag.color"
                     ></div>
+                    <div v-else class="tag-color-dot" style="backgroundColor: #d1d5db; borderColor: #9ca3af"></div>
                     <h5 class="card-title fw-bold mb-0">{{ tag.name }}</h5>
                   </div>
                   <button
@@ -149,7 +153,7 @@
 
                   <!-- Task Count -->
                   <div class="task-count-badge">
-                    <span class="badge bg-success">
+                    <span class="badge" :style="{ backgroundColor: tag.color || '#22c55e' }">
                       <i class="bi bi-check-circle"></i>
                       {{ getTaskCountForTag(tag._id) }} tarea{{ getTaskCountForTag(tag._id) !== 1 ? 's' : '' }}
                     </span>
@@ -352,27 +356,30 @@ textarea:focus {
 
 .card-tag {
   border: none;
-  border-top: 4px solid #22c55e;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-top: 5px solid #22c55e;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 1) 100%);
 }
 
 .card-tag:hover {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
 }
 
 .card-title {
   color: #1f2937;
   font-weight: 600;
+  font-size: 1.1rem;
 }
 
 .tag-color-dot {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  border: 2px solid #e5e7eb;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  border: 2px solid currentColor;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
 }
 
 .tag-info {
@@ -386,8 +393,12 @@ textarea:focus {
 
 .badge {
   font-size: 0.85rem;
-  padding: 0.375rem 0.625rem;
-  background-color: #22c55e !important;
+  padding: 0.5rem 0.75rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .btn-danger {
