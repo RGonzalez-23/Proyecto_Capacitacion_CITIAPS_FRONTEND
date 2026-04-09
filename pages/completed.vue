@@ -48,8 +48,9 @@
                         <h5 class="card-title fw-bold mb-2">
                           {{ task.title }}
                         </h5>
-                        <p v-if="task.description" class="card-text text-muted mb-2">
-                          {{ task.description }}
+                        <p class="card-text text-muted mb-2" :class="{ 'text-italic': !task.description }">
+                          <i v-if="!task.description" class="bi bi-info-circle me-1"></i>
+                          {{ task.description || 'Sin descripción dada.' }}
                         </p>
 
                         <!-- Tags -->
