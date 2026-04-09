@@ -30,11 +30,12 @@
           v-model="searchInput"
           type="text"
           class="form-control"
-          placeholder="Buscar o crear etiqueta..."
-          @keyup.enter="addTag"
+          placeholder="Buscar etiqueta..."
+          @keyup.enter="!searchOnly && addTag()"
           @input="updateSuggestions"
         />
         <button
+          v-if="!searchOnly"
           class="btn btn-success"
           type="button"
           @click="addTag"
@@ -53,7 +54,7 @@
           type="button"
           class="btn btn-sm me-2 mb-2"
           :style="{ 
-            backgroundColor: suggestion.color || '#22c55e',
+            backgroundColor: suggestion.color || '#22ab99',
             color: 'white',
             border: 'none'
           }"
@@ -61,6 +62,18 @@
         >
           {{ suggestion.name }}
         </button>
+      </div>
+
+      <!-- Mensaje cuando no hay resultados en modo search-only -->
+      <div v-else-if="searchOnly && searchInput.trim()" class="alert alert-warning mt-2 mb-0">
+        <i class="bi bi-info-circle"></i>
+        <strong>No se encontraron etiquetas.</strong>
+        <div class="mt-2">
+          <p class="mb-2">¿No encuentras la etiqueta que buscas? Ve a la sección de <strong>Administrar Etiquetas</strong> para crearla.</p>
+          <router-link to="/tags" class="btn btn-sm btn-warning">
+            <i class="bi bi-tags"></i> Ir a Etiquetas
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -77,10 +90,12 @@ interface Tag {
 
 interface Props {
   modelValue?: string[]
+  searchOnly?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  modelValue: () => []
+  modelValue: () => [],
+  searchOnly: false
 })
 
 const emit = defineEmits<{
@@ -113,6 +128,9 @@ function selectSuggestion(tag: Tag) {
 }
 
 async function addTag() {
+  // En modo search-only, no permitir crear tags nuevos
+  if (props.searchOnly) return
+
   const tagName = searchInput.value.trim()
   if (!tagName) return
 
@@ -155,7 +173,7 @@ function updateSuggestions() {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.75rem;
-  background-color: #22c55e !important;
+  background-color: #22ab99 !important;
 }
 
 .btn-close-white {
@@ -175,8 +193,8 @@ function updateSuggestions() {
 }
 
 .btn-outline-success:hover {
-  background-color: #22c55e;
-  border-color: #22c55e;
+  background-color: #22ab99;
+  border-color: #22ab99;
   color: white !important;
 }
 </style>

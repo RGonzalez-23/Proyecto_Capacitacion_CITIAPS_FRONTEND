@@ -76,7 +76,7 @@ function onTaskCreated() {
 
 <style scoped>
 h1 {
-  color: #22c55e;
+  color: #22ab99;
   font-weight: 700;
   font-size: 2rem;
 }
@@ -87,7 +87,7 @@ h1 {
 }
 
 .card-form .card-header {
-  background-color: #22c55e !important;
-  border-bottom: 3px solid #16a34a;
+  background-color: #22ab99 !important;
+  border-bottom: 3px solid #1a8873;
 }
 </style>

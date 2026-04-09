@@ -183,14 +183,14 @@ function goToPage(page: number) {
 
 <style scoped>
 h1 {
-  color: #22c55e;
+  color: #22ab99;
   font-weight: 700;
   font-size: 2rem;
 }
 
 .card-task {
   border: none;
-  border-left: 4px solid #22c55e;
+  border-left: 4px solid #22ab99;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
@@ -214,13 +214,13 @@ h1 {
 }
 
 .btn-group .btn-success {
-  background-color: #22c55e;
-  border-color: #22c55e;
+  background-color: #22ab99;
+  border-color: #22ab99;
 }
 
 .btn-group .btn-success:hover {
-  background-color: #16a34a;
-  border-color: #16a34a;
+  background-color: #1a8873;
+  border-color: #1a8873;
 }
 
 @media (max-width: 768px) {
@@ -235,20 +235,20 @@ h1 {
 }
 
 .pagination .page-link {
-  color: #22c55e;
-  border-color: #22c55e;
+  color: #22ab99;
+  border-color: #22ab99;
   background-color: white;
 }
 
 .pagination .page-link:hover {
   background-color: #f0fdf4;
-  color: #16a34a;
-  border-color: #16a34a;
+  color: #1a8873;
+  border-color: #1a8873;
 }
 
 .pagination .page-item.active .page-link {
-  background-color: #22c55e;
-  border-color: #22c55e;
+  background-color: #22ab99;
+  border-color: #22ab99;
   color: white;
 }
 

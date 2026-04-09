@@ -177,7 +177,7 @@ function goToPage(page: number) {
 
 <style scoped>
 h1 {
-  color: #22c55e;
+  color: #22ab99;
   font-weight: 700;
   font-size: 2rem;
 }
@@ -191,7 +191,7 @@ h1 {
 
 .card-task.card-completed {
   background-color: #f0fdf4;
-  border-left-color: #22c55e;
+  border-left-color: #22ab99;
 }
 
 .card-task:hover {
@@ -203,7 +203,7 @@ h1 {
   flex-shrink: 0;
   width: 2rem;
   height: 2rem;
-  background-color: #22c55e;
+  background-color: #22ab99;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -260,20 +260,20 @@ h1 {
 }
 
 .pagination .page-link {
-  color: #22c55e;
-  border-color: #22c55e;
+  color: #22ab99;
+  border-color: #22ab99;
   background-color: white;
 }
 
 .pagination .page-link:hover {
   background-color: #f0fdf4;
-  color: #16a34a;
-  border-color: #16a34a;
+  color: #1a8873;
+  border-color: #1a8873;
 }
 
 .pagination .page-item.active .page-link {
-  background-color: #22c55e;
-  border-color: #22c55e;
+  background-color: #22ab99;
+  border-color: #22ab99;
   color: white;
 }
 

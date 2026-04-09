@@ -6,7 +6,7 @@
         <div class="card border-0 shadow-lg mb-5">
           <div class="card-body p-5 text-center">
             <div class="welcome-icon mb-4">
-              <i class="bi bi-check-circle-fill" style="font-size: 4rem; color: #22c55e"></i>
+              <i class="bi bi-check-circle-fill" style="font-size: 4rem; color: #22ab99"></i>
             </div>
             <h1 class="display-4 fw-bold mb-3">
               ¡Bienvenido a CITIAPS!
@@ -24,7 +24,7 @@
             <NuxtLink to="/create" class="card card-action border-0 shadow h-100">
               <div class="card-body text-center p-4">
                 <div class="feature-icon mb-3">
-                  <i class="bi bi-plus-circle-fill" style="font-size: 2.5rem; color: #22c55e"></i>
+                  <i class="bi bi-plus-circle-fill" style="font-size: 2.5rem; color: #22ab99"></i>
                 </div>
                 <h5 class="card-title fw-bold">Crear Nueva Tarea</h5>
                 <p class="card-text text-muted">
@@ -41,7 +41,7 @@
             <NuxtLink to="/pending" class="card card-action border-0 shadow h-100">
               <div class="card-body text-center p-4">
                 <div class="feature-icon mb-3">
-                  <i class="bi bi-list-check" style="font-size: 2.5rem; color: #16a34a"></i>
+                  <i class="bi bi-list-check" style="font-size: 2.5rem; color: #1a8873"></i>
                 </div>
                 <h5 class="card-title fw-bold">Tareas Pendientes</h5>
                 <p class="card-text text-muted">
@@ -125,7 +125,7 @@
                 class="progress-bar"
                 :style="{
                   width: ((completedCount / totalCount) * 100) + '%',
-                  backgroundColor: '#22c55e'
+                  backgroundColor: '#22ab99'
                 }"
               ></div>
               <div

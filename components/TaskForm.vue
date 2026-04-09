@@ -58,7 +58,7 @@
         <!-- TagInput Component -->
         <div class="mb-3">
           <label class="form-label">Etiquetas</label>
-          <TagInput v-model="selectedTags" />
+          <TagInput v-model="selectedTags" search-only />
         </div>
 
         <div class="d-grid gap-2">
@@ -145,8 +145,8 @@ async function onSubmit() {
 }
 
 .card-form .card-header {
-  background-color: #22c55e !important;
-  border-bottom: 3px solid #16a34a;
+  background-color: #22ab99 !important;
+  border-bottom: 3px solid #1a8873;
 }
 
 .form-label {
@@ -156,7 +156,7 @@ async function onSubmit() {
 
 .form-control:focus,
 textarea:focus {
-  border-color: #22c55e;
+  border-color: #22ab99;
   box-shadow: 0 0 0 0.2rem rgba(34, 197, 94, 0.25);
 }
 
@@ -178,13 +178,13 @@ textarea.is-invalid:focus {
 }
 
 .btn-primary {
-  background-color: #22c55e;
-  border-color: #22c55e;
+  background-color: #22ab99;
+  border-color: #22ab99;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: #16a34a;
-  border-color: #16a34a;
+  background-color: #1a8873;
+  border-color: #1a8873;
 }
 
 .btn-primary:disabled {
@@ -209,7 +209,7 @@ textarea.is-invalid:focus {
 
 .alert-success {
   background-color: #dcfce7;
-  border-left-color: #22c55e;
+  border-left-color: #22ab99;
   color: #166534;
 }
 

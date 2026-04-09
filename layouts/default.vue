@@ -125,7 +125,7 @@ const completedCount = computed(() => tasks.value.filter(t => t.completed).lengt
 
 .sidebar {
   width: 280px;
-  background-color: #22c55e !important;
+  background-color: #22ab99 !important;
   height: 100vh;
   position: relative;
   overflow-y: auto;
@@ -171,7 +171,7 @@ const completedCount = computed(() => tasks.value.filter(t => t.completed).lengt
 }
 
 .navbar {
-  background-color: #22c55e !important;
+  background-color: #22ab99 !important;
 }
 
 .btn-link {

@@ -73,7 +73,7 @@
                       class="form-control"
                       :value="newTagColor"
                       readonly
-                      placeholder="#22c55e"
+                      placeholder="#22ab99"
                     />
                   </div>
                   <small class="text-muted d-block mt-1">Código hexadecimal: {{ newTagColor }}</small>
@@ -117,7 +117,7 @@
           <div v-for="tag in allTags" :key="tag._id" class="col-md-6 col-lg-4">
             <div 
               class="card card-tag border-0 shadow h-100"
-              :style="{ borderTopColor: tag.color || '#22c55e' }"
+              :style="{ borderTopColor: tag.color || '#22ab99' }"
             >
               <div class="card-body">
                 <!-- Tag Header -->
@@ -153,7 +153,7 @@
 
                   <!-- Task Count -->
                   <div class="task-count-badge">
-                    <span class="badge" :style="{ backgroundColor: tag.color || '#22c55e' }">
+                    <span class="badge" :style="{ backgroundColor: tag.color || '#22ab99' }">
                       <i class="bi bi-check-circle"></i>
                       {{ getTaskCountForTag(tag._id) }} tarea{{ getTaskCountForTag(tag._id) !== 1 ? 's' : '' }}
                     </span>
@@ -180,7 +180,7 @@ const base = config.public.apiBase
 
 const { allTags, tasks, fetchAllTags, fetchTasks, isLoading, error } = useTasks()
 const newTagName = ref('')
-const newTagColor = ref('#22c55e')
+const newTagColor = ref('#22ab99')
 const isCreating = ref(false)
 const isDeleting = ref<string | null>(null)
 const createErrors = ref<string[]>([])
@@ -226,7 +226,7 @@ async function onCreateTag() {
 
     createSuccess.value = '✓ Etiqueta creada exitosamente'
     newTagName.value = ''
-    newTagColor.value = '#22c55e'
+    newTagColor.value = '#22ab99'
     
     await fetchAllTags()
     
@@ -279,7 +279,7 @@ function formatDate(d: string | undefined) {
 
 <style scoped>
 h1 {
-  color: #22c55e;
+  color: #22ab99;
   font-weight: 700;
   font-size: 2rem;
 }
@@ -290,8 +290,8 @@ h1 {
 }
 
 .card-form .card-header {
-  background-color: #22c55e !important;
-  border-bottom: 3px solid #16a34a;
+  background-color: #22ab99 !important;
+  border-bottom: 3px solid #1a8873;
 }
 
 .form-label {
@@ -301,8 +301,8 @@ h1 {
 
 .form-control:focus,
 textarea:focus {
-  border-color: #22c55e;
-  box-shadow: 0 0 0 0.2rem rgba(34, 197, 94, 0.25);
+  border-color: #22ab99;
+  box-shadow: 0 0 0 0.2rem rgba(34, 171, 153, 0.25);
 }
 
 .form-control.is-invalid:focus {
@@ -317,13 +317,13 @@ textarea:focus {
 }
 
 .btn-primary {
-  background-color: #22c55e;
-  border-color: #22c55e;
+  background-color: #22ab99;
+  border-color: #22ab99;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: #16a34a;
-  border-color: #16a34a;
+  background-color: #1a8873;
+  border-color: #1a8873;
 }
 
 .btn-primary:disabled {
@@ -344,7 +344,7 @@ textarea:focus {
 
 .alert-success {
   background-color: #dcfce7;
-  border-left-color: #22c55e;
+  border-left-color: #22ab99;
   color: #166534;
 }
 
@@ -356,7 +356,7 @@ textarea:focus {
 
 .card-tag {
   border: none;
-  border-top: 5px solid #22c55e;
+  border-top: 5px solid #22ab99;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 1) 100%);

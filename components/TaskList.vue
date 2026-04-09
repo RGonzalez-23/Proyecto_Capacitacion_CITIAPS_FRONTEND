@@ -101,7 +101,7 @@ function formatDate(d: string) {
 <style scoped>
 .card-task {
   border: none;
-  border-left: 4px solid #22c55e;
+  border-left: 4px solid #22ab99;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
@@ -128,17 +128,17 @@ function formatDate(d: string) {
 }
 
 .btn-group .btn-success {
-  background-color: #22c55e;
-  border-color: #22c55e;
+  background-color: #22ab99;
+  border-color: #22ab99;
 }
 
 .btn-group .btn-success:hover {
-  background-color: #16a34a;
-  border-color: #16a34a;
+  background-color: #1a8873;
+  border-color: #1a8873;
 }
 
 .text-success {
-  color: #22c55e !important;
+  color: #22ab99 !important;
 }
 
 .alert-info {
@@ -152,7 +152,7 @@ function formatDate(d: string) {
 }
 
 .badge {
-  background-color: #22c55e !important;
+  background-color: #22ab99 !important;
   font-size: 0.85rem;
   padding: 0.375rem 0.625rem;
 }
