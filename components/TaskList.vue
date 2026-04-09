@@ -37,6 +37,14 @@
                 <p v-if="task.description" :class="['card-text', { 'text-muted': task.completed }]">
                   {{ task.description }}
                 </p>
+
+                <!-- Tags section -->
+                <div v-if="task.tagNames && task.tagNames.length > 0" class="mb-2">
+                  <span v-for="tagName in task.tagNames" :key="tagName" class="badge bg-success me-2">
+                    <i class="bi bi-tag"></i> {{ tagName }}
+                  </span>
+                </div>
+
                 <small class="text-muted">
                   <i class="bi bi-calendar3"></i>
                   {{ formatDate(task.createdAt) }}
@@ -70,8 +78,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-
 const { tasks, isLoading, error, completeTask, deleteTask } = useTasks()
 
 function onComplete(task: any) {
@@ -143,5 +149,15 @@ function formatDate(d: string) {
 
 .text-muted {
   color: #6b7280;
+}
+
+.badge {
+  background-color: #22c55e !important;
+  font-size: 0.85rem;
+  padding: 0.375rem 0.625rem;
+}
+
+.badge i {
+  margin-right: 0.25rem;
 }
 </style>

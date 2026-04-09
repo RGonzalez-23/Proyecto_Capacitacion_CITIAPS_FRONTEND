@@ -28,9 +28,17 @@
             placeholder="Ingrese una descripción (opcional)"
           ></textarea>
         </div>
+
+        <!-- TagInput Component -->
+        <div class="mb-3">
+          <label class="form-label">Etiquetas</label>
+          <TagInput v-model="selectedTags" />
+        </div>
+
         <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-primary btn-lg">
-            <i class="bi bi-plus-circle"></i> Crear Tarea
+          <button type="submit" class="btn btn-primary btn-lg" :disabled="isSubmitting">
+            <i class="bi bi-plus-circle"></i>
+            {{ isSubmitting ? 'Creando...' : 'Crear Tarea' }}
           </button>
         </div>
       </form>
@@ -44,15 +52,28 @@ import { ref } from 'vue'
 const props = defineProps<{ onCreated?: () => void }>()
 const title = ref('')
 const description = ref('')
+const selectedTags = ref<string[]>([])
+const isSubmitting = ref(false)
 
 const { createTask } = useTasks()
 
 async function onSubmit() {
   if (!title.value.trim()) return
-  await createTask({ title: title.value, description: description.value })
-  title.value = ''
-  description.value = ''
-  if (props.onCreated) props.onCreated()
+
+  isSubmitting.value = true
+  try {
+    await createTask({
+      title: title.value,
+      description: description.value,
+      tags: selectedTags.value
+    })
+    title.value = ''
+    description.value = ''
+    selectedTags.value = []
+    if (props.onCreated) props.onCreated()
+  } finally {
+    isSubmitting.value = false
+  }
 }
 </script>
 
@@ -72,7 +93,9 @@ async function onSubmit() {
   color: #1f2937;
 }
 
-.form-control:focus {
+.form-control:focus,
+.form-control:focus,
+textarea:focus {
   border-color: #22c55e;
   box-shadow: 0 0 0 0.2rem rgba(34, 197, 94, 0.25);
 }
@@ -82,8 +105,13 @@ async function onSubmit() {
   border-color: #22c55e;
 }
 
-.btn-primary:hover {
+.btn-primary:hover:not(:disabled) {
   background-color: #16a34a;
   border-color: #16a34a;
+}
+
+.btn-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 </style>
