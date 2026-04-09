@@ -64,7 +64,9 @@ onMounted(async () => {
 })
 
 const recentTasks = computed(() => {
-  return tasks.value.slice(0, 5)
+  return tasks.value
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .slice(0, 5)
 })
 
 function onTaskCreated() {
