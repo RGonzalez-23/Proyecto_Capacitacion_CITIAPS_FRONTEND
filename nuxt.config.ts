@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       // Cambiar usando variable de entorno en tiempo de ejecución si se necesita
-      apiBase: process.env.API_BASE || 'http://localhost:8080'
+      apiBase: process.env.API_BASE || 'http://localhost:8080/api'
     }
   }
 })

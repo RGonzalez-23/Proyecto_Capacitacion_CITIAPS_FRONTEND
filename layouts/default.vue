@@ -67,6 +67,15 @@
             </span>
           </NuxtLink>
         </li>
+        <li class="nav-item">
+          <NuxtLink
+            to="/tags"
+            class="nav-link text-white"
+            :class="{ active: $route.path === '/tags' }"
+          >
+            <i class="bi bi-tags"></i> Etiquetas
+          </NuxtLink>
+        </li>
       </ul>
     </nav>
 

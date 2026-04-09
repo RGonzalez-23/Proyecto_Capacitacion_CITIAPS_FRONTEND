@@ -78,20 +78,20 @@
           </div>
 
           <div class="col-md-6">
-            <div class="card border-0 shadow h-100">
+            <NuxtLink to="/tags" class="card card-action border-0 shadow h-100">
               <div class="card-body text-center p-4">
                 <div class="feature-icon mb-3">
                   <i class="bi bi-tags" style="font-size: 2.5rem; color: #0ea5e9"></i>
                 </div>
-                <h5 class="card-title fw-bold">Etiquetas</h5>
+                <h5 class="card-title fw-bold">Administrar Etiquetas</h5>
                 <p class="card-text text-muted">
-                  Organiza tus tareas con etiquetas personalizadas para mejor control.
+                  Crea y organiza tus etiquetas personalizadas para mejor control.
                 </p>
                 <div class="mt-3">
                   <span class="badge bg-info">{{ allTags.length }} etiquetas</span>
                 </div>
               </div>
-            </div>
+            </NuxtLink>
           </div>
         </div>
 

@@ -1,10 +1,10 @@
 import { ref } from 'vue'
 
 interface Tag {
-  id: string
+  _id: string
   name: string
   color?: string
-  createdAt: string
+  createdAt?: string
 }
 
 interface Task {
