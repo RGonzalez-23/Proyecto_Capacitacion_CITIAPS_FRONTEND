@@ -49,7 +49,7 @@
                 </p>
                 <div class="mt-3">
                   <span class="badge bg-warning text-dark">
-                    {{ pendingCount }} tareas
+                    {{ pendingCount }} tarea{{ pendingCount !== 1 ? 's' : '' }}
                   </span>
                 </div>
               </div>
@@ -70,7 +70,7 @@
                 </p>
                 <div class="mt-3">
                   <span class="badge bg-success">
-                    {{ completedCount }} completadas
+                    {{ completedCount }} completada{{ completedCount !== 1 ? 's' : '' }}
                   </span>
                 </div>
               </div>
@@ -88,7 +88,7 @@
                   Crea y organiza tus etiquetas personalizadas para mejor control.
                 </p>
                 <div class="mt-3">
-                  <span class="badge bg-info">{{ allTags.length }} etiquetas</span>
+                  <span class="badge bg-info">{{ allTags.length }} etiqueta{{ allTags.length !== 1 ? 's' : '' }}</span>
                 </div>
               </div>
             </NuxtLink>
