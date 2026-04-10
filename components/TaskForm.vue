@@ -57,12 +57,22 @@
 
         <!-- TagInput Component -->
         <div class="mb-3">
-          <label class="form-label">Etiquetas</label>
+          <label class="form-label">Etiquetas <span class="text-danger">*</span></label>
           <TagInput v-model="selectedTags" search-only />
+          <div v-if="!selectedTags || selectedTags.length === 0" class="alert alert-warning mt-2 mb-0">
+            <i class="bi bi-exclamation-triangle"></i>
+            <strong>Se requiere mínimo una etiqueta.</strong>
+            <div class="mt-2">
+              <p class="mb-2">Si no encuentras una etiqueta adecuada, ve a la sección <strong>Administrar Etiquetas</strong> para crearla.</p>
+              <router-link to="/tags" class="btn btn-sm btn-warning">
+                <i class="bi bi-plus-circle"></i> Crear etiqueta
+              </router-link>
+            </div>
+          </div>
         </div>
 
         <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-primary btn-lg" :disabled="isSubmitting || !!titleError">
+          <button type="submit" class="btn btn-primary btn-lg" :disabled="isSubmitting || !!titleError || !selectedTags || selectedTags.length === 0">
             <i class="bi bi-plus-circle"></i>
             {{ isSubmitting ? 'Creando...' : 'Crear Tarea' }}
           </button>
@@ -108,6 +118,11 @@ async function onSubmit() {
 
   if (!title.value.trim()) {
     errors.value.push('El título no puede estar vacío')
+    return
+  }
+
+  if (!selectedTags.value || selectedTags.value.length === 0) {
+    errors.value.push('Debes seleccionar al menos una etiqueta para la tarea')
     return
   }
 

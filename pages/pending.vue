@@ -12,6 +12,42 @@
           </span>
         </div>
 
+        <!-- Filter by Tags -->
+        <div class="card mb-4 border-0 shadow">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h6 class="mb-0">
+                <i class="bi bi-funnel"></i> Filtrar por etiqueta
+              </h6>
+              <button 
+                v-if="selectedTagFilter" 
+                type="button" 
+                class="btn btn-sm btn-outline-secondary"
+                @click="selectedTagFilter = null"
+              >
+                <i class="bi bi-x-circle"></i> Limpiar filtro
+              </button>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button
+                v-if="allTags.length > 0"
+                v-for="tag in allTags"
+                :key="tag._id"
+                type="button"
+                class="btn btn-sm"
+                :class="selectedTagFilter === tag.name ? 'btn-primary' : 'btn-outline-secondary'"
+                :style="selectedTagFilter === tag.name ? { backgroundColor: tag.color || '#22ab99', borderColor: tag.color || '#22ab99' } : {}"
+                @click="selectedTagFilter === tag.name ? selectedTagFilter = null : selectedTagFilter = tag.name"
+              >
+                {{ tag.name }}
+              </button>
+              <div v-if="allTags.length === 0" class="text-muted">
+                <small>No hay etiquetas disponibles</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Empty State -->
         <div v-if="isLoading" class="text-center">
           <div class="spinner-border text-primary" role="status">
@@ -126,15 +162,27 @@ definePageMeta({
   layout: 'default'
 })
 
-const { tasks, isLoading, error, fetchTasks, completeTask, deleteTask, getTagColorByName } = useTasks()
+const { tasks, isLoading, error, fetchTasks, completeTask, deleteTask, getTagColorByName, allTags, fetchAllTags } = useTasks()
 const currentPage = ref(1)
 const itemsPerPage = 5
+const selectedTagFilter = ref<string | null>(null)
 
 onMounted(async () => {
   await fetchTasks()
+  await fetchAllTags()
 })
 
-const pendingTasks = computed(() => tasks.value.filter(t => !t.completed))
+const pendingTasks = computed(() => {
+  let filtered = tasks.value.filter(t => !t.completed)
+  
+  if (selectedTagFilter.value) {
+    filtered = filtered.filter(t => 
+      t.tagNames && t.tagNames.includes(selectedTagFilter.value!)
+    )
+  }
+  
+  return filtered
+})
 
 const totalPages = computed(() => Math.ceil(pendingTasks.value.length / itemsPerPage))
 
