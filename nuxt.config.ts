@@ -3,6 +3,12 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   css: ['~/assets/styles/bootstrap-override.scss'],
+  vite: {
+    css: {
+      preprocessorOptions: {
+      }
+    }
+  },
   app: {
     head: {
       title: 'CITIAPS - Gestor de Tareas',
