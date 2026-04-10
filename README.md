@@ -63,7 +63,7 @@ Proyecto_Capacitacion_CITIAPS_FRONTEND/
 
 2. Navega a la carpeta del frontend:
    ```powershell
-   cd FRONTEND/Proyecto_Capacitacion_CITIAPS_FRONTEND
+   cd <Carpeta donde se clonó o descargó el proyecto>/Proyecto_Capacitacion_CITIAPS_FRONTEND
    ```
 
 3. Instala las dependencias:
@@ -106,6 +106,42 @@ Visualiza la aplicación compilada localmente:
 
 ```powershell
 npm run preview
+```
+
+## Ejecución con Docker
+
+### Requisitos
+- **Docker** y **Docker Compose** instalados
+
+### Uso
+
+1. Navega a la carpeta del frontend:
+   ```powershell
+   cd <Carpeta donde se clonó o descargó el proyecto>/Proyecto_Capacitacion_CITIAPS_FRONTEND
+   ```
+
+2. Levanta el contenedor:
+   ```powershell
+   docker-compose up --build
+   ```
+
+3. La aplicación estará disponible en: **http://localhost:3000**
+
+**Notas:**
+- La aplicación se compilará en modo producción dentro del contenedor
+- Asegúrate de que el backend esté corriendo en `http://localhost:8080` (puedes cambiar la URL en el docker-compose)
+- El contenedor expondrá la aplicación en el puerto 3000
+
+### Detener el contenedor
+
+```powershell
+docker-compose down
+```
+
+### Ver logs
+
+```powershell
+docker logs citiaps-frontend
 ```
 
 ## Funcionalidades Principales
