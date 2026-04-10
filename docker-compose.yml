@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: .
+    container_name: citiaps-frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      NUXT_PUBLIC_API_BASE: http://localhost:8080/api
+    networks:
+      - citiaps-network
+
+networks:
+  citiaps-network:
+    driver: bridge
