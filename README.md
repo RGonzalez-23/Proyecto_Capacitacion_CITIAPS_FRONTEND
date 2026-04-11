@@ -82,6 +82,8 @@ NUXT_PUBLIC_API_BASE=http://localhost:8080/api
 
 ## Ejecución
 
+Advertencia: apareceran varias advertencias de deprecación.
+
 ### Servidor de Desarrollo
 
 Ejecuta la aplicación en modo desarrollo:
