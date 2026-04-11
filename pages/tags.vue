@@ -224,7 +224,7 @@ async function onCreateTag() {
       }
     })
 
-    createSuccess.value = '✓ Etiqueta creada exitosamente'
+    createSuccess.value = 'Etiqueta creada exitosamente'
     newTagName.value = ''
     newTagColor.value = '#22ab99'
     

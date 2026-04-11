@@ -133,7 +133,7 @@ async function onSubmit() {
       description: description.value.trim(),
       tags: selectedTags.value
     })
-    successMessage.value = '✓ Tarea creada exitosamente'
+    successMessage.value = 'Tarea creada exitosamente'
     title.value = ''
     description.value = ''
     selectedTags.value = []
